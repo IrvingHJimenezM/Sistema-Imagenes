@@ -51,7 +51,7 @@
         <tbody>
 
           <?php
-         // date_default_timezone_set('America/Chicago');
+          date_default_timezone_set('America/Chicago');
           $Fecha = date('Y-m-d');
           $query = "SELECT * FROM CajasImg WHERE Fecha ='$Fecha'";
           $result_tasks = mysqli_query($conexion, $query);    

@@ -36,7 +36,7 @@
       </div>
     </nav>
    <?php
-       // date_default_timezone_set('America/Chicago');
+        date_default_timezone_set('America/Chicago');
         $Fecha = date('Y-m-d');
         if  (isset($_GET['id'])) 
         {
@@ -112,7 +112,7 @@
                                         <th scope="row">Descargada</th>
                                         <td> <img width="100" src="data:image/jpg;base64,<?php echo  base64_encode($Descargada); ?>"></td>
                                         <td>
-                                            <a href="Agregar.php?id=<?php echo $row['Id']?>" class="btn btn-secondary">
+                                            <a href="php/Descargada.php?id=<?php echo $row['Id']?>" class="btn btn-secondary">
                                             <i class="bi bi-camera"></i>
                                             </a>
                                             <a href="Agregar.php?id=<?php echo $row['Id']?>" class="btn btn-secondary">
@@ -124,7 +124,7 @@
                                         <th scope="row">Cargada</th>
                                         <td> <img width="100" src="data:image/jpg;?>;base64,<?php echo  base64_encode($Cargada); ?>"></td>
                                         <td>
-                                            <a href="Agregar.php?id=<?php echo $row['Id']?>" class="btn btn-secondary">
+                                            <a href="php/Cargada.php?id=<?php echo $row['Id']?>" class="btn btn-secondary">
                                             <i class="bi bi-camera"></i>
                                             </a>
                                             <a href="Agregar.php?id=<?php echo $row['Id']?>" class="btn btn-secondary">
@@ -136,7 +136,7 @@
                                         <th scope="row">Sello</th>
                                         <td> <img width="100" src="data:image/jpg;?>;base64,<?php echo  base64_encode($Sello); ?>"></td>
                                         <td>
-                                            <a href="Agregar.php?id=<?php echo $row['Id']?>" class="btn btn-secondary">
+                                            <a href="php/Sello.php?id=<?php echo $row['Id']?>" class="btn btn-secondary">
                                             <i class="bi bi-camera"></i>
                                             </a>
                                             <a href="Agregar.php?id=<?php echo $row['Id']?>" class="btn btn-secondary">
