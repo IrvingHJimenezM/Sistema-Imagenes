@@ -46,7 +46,7 @@
                         $binariosImagen = fread($imagenSubida, $tamanoArchivo);
                         $binariosImagen = mysqli_escape_string($conexion, $binariosImagen);
                         $query = "UPDATE CajasImg  Set LLegada = '$binariosImagen' Where Id ='$id'";
-                        $res = mysqli_query($conexion, $query);
+                        $res = mysqli_query($conexion,$query);
                         if ($res) {
                 ?>
                             <div class="alert alert-primary alert-dismissible fade show" role="alert">

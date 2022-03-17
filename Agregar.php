@@ -103,7 +103,7 @@
                                             <a href="php/LLegada.php?id=<?php echo $row['Id']?>" class="btn btn-secondary">
                                             <i class="bi bi-camera"></i>
                                             </a>
-                                            <a href="Agregar.php?id=<?php echo $row['Id']?>" class="btn btn-secondary">
+                                            <a href="php/Download.php?id=<?php echo $row['Id']?>"class="btn btn-secondary">
                                             <i class="bi bi-download"></i>
                                             </a>
                                         </td>
