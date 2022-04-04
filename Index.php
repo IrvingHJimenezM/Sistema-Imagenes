@@ -42,8 +42,8 @@
      <table class="table table-bordered">
         <thead>
           <tr>
-            <th>Folio</th>
             <th>Anden</th>
+            <th>Patente</th>
             <th>#Caja</th>
             <th>Imagenes</th>
           </tr>
@@ -58,8 +58,8 @@
 
           while($row = mysqli_fetch_assoc($result_tasks)) { ?>
           <tr>
-            <td><?php echo $row['Folio']; ?></td>
             <td><?php echo $row['Anden']; ?></td>
+            <td><?php echo $row['Patente']; ?></td>
             <td><?php echo $row['NumCaja']; ?></td>
             <td>
               <a href="Agregar.php?id=<?php echo $row['Id']?>" class="btn btn-secondary">
