@@ -30,6 +30,7 @@ if (isset($_POST['usuario']) && isset($_POST['pass'])) {
             if ($row['Usuario'] === $User && $row['Contraseña'] === $Pass) {
             	$_SESSION['Usuario'] = $row['Usuario'];
             	header("Location: /Sistema Imagenes/Index.php");
+				//header("Location: /Sistema Imagenes/Mantenimiento.html");
 		        exit();
             }else{
 				header("Location: /Sistema Imagenes/Login.php?error=Usuario o Contraseña Incorrecta");

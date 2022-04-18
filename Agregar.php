@@ -19,22 +19,85 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <!-- FONT AWESOME -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <!-- CSS -->
     <link rel="stylesheet" href= "/Sistema Imagenes/css/Agregar.css">
 
 </head>
 <body>
 
-<nav class="navbar navbar-light" style="background-color: #e3f2fd;">
-      <div class="container">
-                <?php echo 'Bienvenido '.$nombre; ?>
-                <a class="navbar-brand" href="Index.php">Inicio</a>
-                <a class="navbar-brand" href="Buscar.php">Buscar</a>
-                <a id="CerrarSesion" href="/Sistema Imagenes/php/salir.php">Cerrar sesión</a>
-       
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" > <?php echo 'Bienvenido '.$nombre; ?></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#Elementos" aria-controls="Elementos" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="Elementos">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="Index.php">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="Buscar.php">Buscar</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" id="CerrarSesion" href="/Sistema Imagenes/php/salir.php">Cerrar sesión</a>
+                    </li>
+                
+                </ul>
+            </div>
         </div>
-    </nav>
+   </nav>
+ <!-- modal de comentarios-->
+ <div class="modal fade" id="Modal_de_Comentarios" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Comentarios</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <textarea class="form-control" id="MdComentario"></textarea>
+            <h3>    </h3>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="EliminarComentario" class="btn btn-danger">Eliminar Comentario</button>
+        <button type="button" id="GuardarComentario"class="btn btn-success">Guardar Comentario</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--==-->
+ <!-- modal de fotografia -->
+    <div class="modal fade" id="Modal_de_Fotografia" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog ">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Fotografia</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="card" style="width: 26rem;">
+                <div class="card-body">
+                    <form >
+                        <img class="card-img-top" id="photo" class="photo">
+                        <input type="file" accept="image/*" capture="camera" id="camera" name="camera" />
+                    </form>
+                </div>
+              </div>
+        </div>
+        <div class="modal-footer">
+             <button class="btn btn-primary" type="submit" id="BtnGuardarFotografia" name ="BtnGuardarFotografia">Guardar Foto</button>
+        </div>
+        </div>
+      </div>
+    </div>
+<!--==-->
    <?php
         date_default_timezone_set('America/Chicago');
         $Fecha = date('Y-m-d');
@@ -76,7 +139,12 @@
                         
             }
         }
+        
+
+
+
    ?>    
+
 <!--Datos de la Caja -->
   <div class="container p-4">  
        <div class="row">  
@@ -96,19 +164,21 @@
                                     <label for="Caja"> #Caja</label>
                                     <input type="text" name="Caja" class="form-control" value="<?php echo $Caja; ?>" placeholder="Caja" autofocus>
                                 </div>
+                                <input type="hidden" name="ValorId" id="ValorId" value="<?php echo $id; ?>">
+                                <input type="hidden" name="ValorUser" id="ValorUser" value="<?php echo $nombre; ?>">
                                 </fieldset>
-
                          </form>
-
                     </div>
             </div>
         </div>
    </div>
-   <!--IMAGENES -->
-                  <div class="container p-2">
-                        <form action="Agregar.php?id=<?php echo $_GET['id']; ?>" method="POST">
-                             <table class="table">
-                             <thead class="thead-dark">
+   <!--IMAGENES/TABLA -->
+       <div class="container">    
+             <div class="row">   
+                  <div class="col">   
+                       <form action="Agregar.php?id=<?php echo $_GET['id']; ?>" method="POST">
+                             <table class="table align-middle table-success table-striped table-bordered border-dark border-3" id="TablaCaja" >
+                                    <thead >
                                         <tr>
                                         <th scope="col">Momentos</th>
                                         <th scope="col">Fotos</th>
@@ -135,9 +205,8 @@
                                             <td> <?php echo $Cllegada?> </td>
                                             <td></td>
                                             <td>
-                                                <a href="php/Foto.php?id=<?php echo $row['Id']?>&VarOper=1" class="btn btn-secondary">
-                                                <i class="bi bi-chat-square-text"></i>
-                                                </a>
+                                            <button type="button" class="btn btn-secondary"  id="ComentarioLLegada" data-bs-toggle="modal" data-bs-target="#Modal_de_Comentarios"><i class="bi bi-chat-square-text"></i></button>
+
                                             </td>
                                         </tr>
                                         <tr>
@@ -158,9 +227,8 @@
                                             <td> <?php echo $Cllegada2?> </td>
                                             <td></td>
                                             <td>
-                                                <a href="php/Foto.php?id=<?php echo $row['Id']?>&VarOper=1" class="btn btn-secondary">
-                                                <i class="bi bi-chat-square-text"></i>
-                                                </a>
+                                            <button type="button" class="btn btn-secondary" id="ComentarioLLegada2" data-bs-toggle="modal" data-bs-target="#Modal_de_Comentarios"><i class="bi bi-chat-square-text"></i></button>
+
                                             </td>
                                          </tr>
                                         <tr>
@@ -181,9 +249,8 @@
                                             <td> <?php echo $CDescargada?> </td>
                                             <td></td>
                                             <td>
-                                                <a href="php/Foto.php?id=<?php echo $row['Id']?>&VarOper=1" class="btn btn-secondary">
-                                                <i class="bi bi-chat-square-text"></i>
-                                                </a>
+                                            <button type="button" class="btn btn-secondary" id="ComentarioDescargada" data-bs-toggle="modal" data-bs-target="#Modal_de_Comentarios"><i class="bi bi-chat-square-text"></i></button>
+
                                             </td>
                                         </tr>
                                         <tr>
@@ -204,9 +271,8 @@
                                             <td> <?php echo $CDescargada2?> </td>
                                             <td></td>
                                             <td>
-                                                <a href="php/Foto.php?id=<?php echo $row['Id']?>&VarOper=1" class="btn btn-secondary">
-                                                <i class="bi bi-chat-square-text"></i>
-                                                </a>
+                                            <button type="button" class="btn btn-secondary" id="ComentarioDescargada2" data-bs-toggle="modal" data-bs-target="#Modal_de_Comentarios"><i class="bi bi-chat-square-text"></i></button>
+
                                             </td>
                                         </tr>
                                         <tr>
@@ -227,9 +293,9 @@
                                             <td> <?php echo $CCargada?> </td>
                                             <td></td>
                                             <td>
-                                                <a href="php/Foto.php?id=<?php echo $row['Id']?>&VarOper=1" class="btn btn-secondary">
-                                                <i class="bi bi-chat-square-text"></i>
-                                                </a>
+                                            <button type="button" class="btn btn-secondary" id="ComentarioCargada" data-bs-toggle="modal" data-bs-target="#Modal_de_Comentarios"><i class="bi bi-chat-square-text"></i></button>
+
+
                                             </td>
                                         </tr>
                                         <tr>
@@ -250,9 +316,8 @@
                                             <td> <?php echo $CCargada2?> </td>
                                             <td></td>
                                             <td>
-                                                <a href="php/Foto.php?id=<?php echo $row['Id']?>&VarOper=1" class="btn btn-secondary">
-                                                <i class="bi bi-chat-square-text"></i>
-                                                </a>
+                                            <button type="button" class="btn btn-secondary" id="ComentarioCargada2" data-bs-toggle="modal" data-bs-target="#Modal_de_Comentarios"><i class="bi bi-chat-square-text"></i></button>
+
                                             </td>
                                         </tr>
                                         <tr>
@@ -273,9 +338,8 @@
                                             <td> <?php echo $CSello?> </td>
                                             <td></td>
                                             <td>
-                                                <a href="php/Foto.php?id=<?php echo $row['Id']?>&VarOper=1" class="btn btn-secondary">
-                                                <i class="bi bi-chat-square-text"></i>
-                                                </a>
+                                            <button type="button" class="btn btn-secondary" id="ComentarioSello" data-bs-toggle="modal" data-bs-target="#Modal_de_Comentarios"><i class="bi bi-chat-square-text"></i></button>
+
                                             </td>
                                         </tr>
                                         <tr>
@@ -296,17 +360,30 @@
                                             <td> <?php echo $CSello2?> </td>
                                             <td></td>
                                             <td>
-                                                <a href="php/Foto.php?id=<?php echo $row['Id']?>&VarOper=1" class="btn btn-secondary">
-                                                <i class="bi bi-chat-square-text"></i>
-                                                </a>
+                                            <button type="button" class="btn btn-secondary" id="ComentarioSello2" data-bs-toggle="modal" data-bs-target="#Modal_de_Comentarios"><i class="bi bi-chat-square-text"></i></button>
+
                                             </td>
                                         </tr>
                                     </tbody>
                                </table>
 
                         </form>
-                 </div>
-</body>
+
+                  </div>
+             </div>
+       </div>
+       <script src="/Sistema Imagenes/js/jquery/jquery-3.6.0.min.js"></script>
+       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+       <script src="/Sistema Imagenes/js/Modal.js"></script>
+       <script src="/Sistema Imagenes/js/script.js"></script>
+       
+      <!--Función actualizar-->
+      <script type="text/javascript">
+      function actualizar(){location.reload(true);}
+      //Función para actualizar cada 20 segundos(20000 milisegundos)
+      setInterval("actualizar()",20000);
+      </script>
+    </body>
 </html>
 
 <?php 

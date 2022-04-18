@@ -19,22 +19,35 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <!-- FONT AWESOME -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-    <!-- CSS -->
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <!-- CSS -->
     <link rel="stylesheet" href= "/Sistema Imagenes/css/LLegada.css">
 
 </head>
 <body>
-
-
-    <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
-      <div class="container">
-        <?php echo 'Bienvenido '.$nombre; ?>
-        <a class="navbar-brand" href="/Sistema Imagenes/Index.php">Inicio</a>
-        <a class="navbar-brand" href="/Sistema Imagenes/Buscar.php">Buscar</a>
-        <a id="CerrarSesion" href="/Sistema Imagenes/php/salir.php">Cerrar sesión</a>
-      </div>
-    </nav>
+   <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" > <?php echo 'Bienvenido '.$nombre; ?></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#Elementos" aria-controls="Elementos" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="Elementos">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/Sistema Imagenes/Index.php">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/Sistema Imagenes/Buscar.php">Buscar</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" id="CerrarSesion" href="/Sistema Imagenes/php/salir.php">Cerrar sesión</a>
+                    </li>
+                
+                </ul>
+            </div>
+        </div>
+   </nav>
     <!-- VALIDAMOS LA ACCION Y SI HAY FOTOGRAFIA O NO -->
     <?php
         
@@ -145,8 +158,6 @@
                                     <span class="sr-only">Close</span>
                                 </button>
                                 Foto Guardada exitosamente
-                               
-
                          </div>
                          
                     <?php
@@ -168,13 +179,14 @@
                else  
                   {
                      ?>
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                                <span class="sr-only">Close</span>
-                            </button>
-                            Foto No Tomada
-                        </div>
+                     <div class="alert alert-danger d-flex align-items-center" role="alert">
+                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                    <div>
+                        FOTO NO TOMADA
+                    </div>
+                    
+                    </div>
+                       
                      <?php
                    } 
             } //PRIMER IF
@@ -194,7 +206,8 @@
          </div>
     </div>
       <script src="/Sistema Imagenes/js/script.js"></script>
-      
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
     </body>
 </html>
 

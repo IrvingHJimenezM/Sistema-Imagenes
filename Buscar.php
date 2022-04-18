@@ -25,14 +25,28 @@
 
 </head>
 <body>
-<nav class="navbar navbar-light" style="background-color: #e3f2fd;">
-      <div class="container">
-        <?php echo 'Bienvenido '.$nombre; ?>
-        <a class="navbar-brand" href="Index.php">Inicio</a>
-        <a class="navbar-brand" href="Buscar.php">Buscar</a>
-        <a id="CerrarSesion" href="/Sistema Imagenes/php/salir.php">Cerrar sesión</a>
-      </div>
-    </nav>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" > <?php echo 'Bienvenido '.$nombre; ?></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#Elementos" aria-controls="Elementos" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="Elementos">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="Index.php">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="Buscar.php">Buscar</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" id="CerrarSesion" href="/Sistema Imagenes/php/salir.php">Cerrar sesión</a>
+                    </li>
+                
+                </ul>
+            </div>
+        </div>
+   </nav>
     
     <div class="container p-4">  
          <div class="row">  
@@ -76,46 +90,49 @@
           <?php
           if (isset($_REQUEST['BtnBuscar'])) {
             
-                $Fecha = $_POST['fechabuscada'];
-                $Patente = $_POST['Patente'];
-                $Caja = $_POST['Caja'];
-
-                  if ($Fecha != null) 
-                  {
-                    $timestamp = strtotime($Fecha); 
-                    $newDate = date("Y-m-d", $timestamp );
-                    $query = "SELECT * FROM CajasImg WHERE Fecha ='$newDate'";
-                    $result_tasks = mysqli_query($conexion, $query);
-                  }
-                  if ($Patente != null) 
-                  {
-                    $query = "SELECT * FROM CajasImg WHERE Patente ='$Patente'";
-                    $result_tasks = mysqli_query($conexion, $query);
-                  }
-                  if ($Caja != null) 
-                  {
-                    $query = "SELECT * FROM CajasImg WHERE NumCaja ='$Caja'";
-                    $result_tasks = mysqli_query($conexion, $query);
-                  }
-
-                  while($row = mysqli_fetch_assoc($result_tasks)) { ?>
-                  <tr>
-                    <td><?php echo $row['User']; ?></td>
-                    <td><?php echo $row['Anden']; ?></td>
-                    <td><?php echo $row['Patente']; ?></td>
-                    <td><?php echo $row['NumCaja']; ?></td>
-                
-                    <td>
-                      <a href="Agregar.php?id=<?php echo $row['Id']?>" class="btn btn-secondary">
-                      <i class="bi bi-eye"></i>
-                      </a>
-                    </td>
-                  </tr>
+                  $Fecha = $_POST['fechabuscada'];
+                  $Patente = $_POST['Patente'];
+                  $Caja = $_POST['Caja'];
+                  //validamos que no venga ningun campo vacio
+                  if(!empty($Fecha) || !empty($Patente) || !empty($Caja)){
+ 
+                    if ($Fecha != null) 
+                    {
+                      $timestamp = strtotime($Fecha); 
+                      $newDate = date("Y-m-d", $timestamp );
+                      $query = "SELECT * FROM CajasImg WHERE Fecha ='$newDate'";
+                      $result_tasks = mysqli_query($conexion, $query);
+                    }
+                    if ($Patente != null) 
+                    {
+                      $query = "SELECT * FROM CajasImg WHERE Patente ='$Patente'";
+                      $result_tasks = mysqli_query($conexion, $query);
+                    }
+                    if ($Caja != null) 
+                    {
+                      $query = "SELECT * FROM CajasImg WHERE NumCaja ='$Caja'";
+                      $result_tasks = mysqli_query($conexion, $query);
+                    }
+                      while($row = mysqli_fetch_assoc($result_tasks)) { ?>
+                      <tr>
+                        <td><?php echo $row['User']; ?></td>
+                        <td><?php echo $row['Anden']; ?></td>
+                        <td><?php echo $row['Patente']; ?></td>
+                        <td><?php echo $row['NumCaja']; ?></td>
+                    
+                        <td>
+                          <a href="Agregar.php?id=<?php echo $row['Id']?>" class="btn btn-secondary">
+                          <i class="bi bi-eye"></i>
+                          </a>
+                        </td>
+                      </tr>
               
-              <?php  }}?>
+              <?php } }}?>
         </tbody>
       </table>
     </div>
+    <script src="/Sistema Imagenes/js/jquery/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
 </body>
 </html>
@@ -128,3 +145,4 @@
     }
 
 ?>
+
